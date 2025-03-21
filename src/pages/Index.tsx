@@ -16,11 +16,13 @@ const researchWithModels = async (query: string) => {
   
   // This is a mock response - in a real app, you'd query different AI models via backend
   return {
-    text: `Based on research across multiple AI models, here's the best answer for "${query}"...`,
+    text: `Based on research across multiple AI models, here's the best answer for "${query}"...
+
+This would be implemented using HTML, CSS, JavaScript for the frontend and Python for the backend processing of multiple AI model responses.`,
     sources: [
-      { name: "GPT-4", confidence: 0.92 },
-      { name: "Gemini", confidence: 0.89 },
-      { name: "Claude", confidence: 0.87 }
+      { name: "GPT-4", confidence: 0.92, language: "Python/JS" },
+      { name: "Gemini", confidence: 0.89, language: "HTML/CSS" },
+      { name: "Claude", confidence: 0.87, language: "JavaScript" }
     ]
   };
 };
@@ -28,7 +30,7 @@ const researchWithModels = async (query: string) => {
 const Index = () => {
   const [messages, setMessages] = useState([
     { 
-      text: "Hi there! I'm your AI research assistant. I can search across multiple AI models for the best answers.", 
+      text: "Hi there! I'm your AI research assistant. I can search across multiple AI models for the best answers using HTML, CSS, JavaScript, and Python.", 
       sender: 'ai',
       sources: [] 
     }
@@ -135,7 +137,7 @@ const Index = () => {
                     <div className="flex flex-wrap gap-2">
                       {message.sources.map((source, idx) => (
                         <span key={idx} className="text-xs bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-full">
-                          {source.name} ({(source.confidence * 100).toFixed(0)}%)
+                          {source.name} ({(source.confidence * 100).toFixed(0)}%) - {source.language}
                         </span>
                       ))}
                     </div>
@@ -156,7 +158,7 @@ const Index = () => {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-1.5 text-xs">
                     <Search className="w-3 h-3 animate-pulse" />
-                    <span>Researching across multiple AI models...</span>
+                    <span>Researching across multiple AI models (HTML, CSS, JS, Python)...</span>
                   </div>
                   <Skeleton className="h-3 w-3/4 bg-gray-200 dark:bg-gray-800" />
                   <Skeleton className="h-3 w-1/2 bg-gray-200 dark:bg-gray-800" />
